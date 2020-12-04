@@ -10,7 +10,7 @@ namespace AdventOfCode2
         {
             bool yolo = IsPasswordValid("1-3 g: rbggweg");
 
-            var passwords = File.ReadAllLines(@"C:\Users\nilss\Source\Repos\AdventOfCode2\TestData.txt");
+            var passwords = File.ReadAllLines(@"C:\Users\nilss\Source\Repos\AdventOfCode\AdventOfCode2\TestData.txt");
             int count = 0;
             foreach (var password in passwords)
             {

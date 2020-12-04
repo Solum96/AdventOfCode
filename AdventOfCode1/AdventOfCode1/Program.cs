@@ -8,7 +8,7 @@ namespace AdventOfCode1
     {
         static void Main(string[] args)
         {
-            var inputString = File.ReadAllText("C:/Users/nilss/Source/Repos/AdventOfCode1/TestData.txt");
+            var inputString = File.ReadAllText("C:/Users/nilss/Source/Repos/AdventOfCode/AdventOfCode1/TestData.txt");
             var p = new Program();
             var answer = p.Find2020(p.CleanInputData(inputString));
 
