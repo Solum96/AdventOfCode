@@ -9,7 +9,7 @@ namespace AdventOfCode3
     {
         static void Main(string[] args)
         {
-            var data = File.ReadAllLines(@"C:\Users\nilss\Source\Repos\AdventOfCode3\AdventOfCode3\TestData.txt");
+            var data = File.ReadAllLines(@"C:\Users\nilss\Source\Repos\AdventOfCode\AdventOfCode3\AdventOfCode3\TestData.txt");
             var mapArray = CreateMap(data);
             var toboggan1 = new Toboggan() { xPosition = 0, yPosition = 0, TreeCount = 0 };
             var toboggan2 = new Toboggan() { xPosition = 0, yPosition = 0, TreeCount = 0 };
@@ -19,11 +19,11 @@ namespace AdventOfCode3
 
             foreach (var item in mapArray)
             {
-                if (CalculateNextPosition(toboggan1, mapArray, 1, 1)) toboggan1.TreeCount++;
-                if (CalculateNextPosition(toboggan2, mapArray, 1, 3)) toboggan2.TreeCount++;
-                if (CalculateNextPosition(toboggan3, mapArray, 1, 5)) toboggan3.TreeCount++;
-                if (CalculateNextPosition(toboggan4, mapArray, 1, 7)) toboggan4.TreeCount++;
-                if (CalculateNextPosition(toboggan5, mapArray, 2, 1)) toboggan5.TreeCount++;
+                if (IsNextPositionTree(toboggan1, mapArray, 1, 1)) toboggan1.TreeCount++;
+                if (IsNextPositionTree(toboggan2, mapArray, 1, 3)) toboggan2.TreeCount++;
+                if (IsNextPositionTree(toboggan3, mapArray, 1, 5)) toboggan3.TreeCount++;
+                if (IsNextPositionTree(toboggan4, mapArray, 1, 7)) toboggan4.TreeCount++;
+                if (IsNextPositionTree(toboggan5, mapArray, 2, 1)) toboggan5.TreeCount++;
             }
 
             var answer = toboggan2.TreeCount;
@@ -32,10 +32,10 @@ namespace AdventOfCode3
             Console.WriteLine($"answer2 = {answer2}");
         }
 
-        static bool CalculateNextPosition(Toboggan toboggan, string[][] map, int yMovement, int xMovement)
+        static bool IsNextPositionTree(Toboggan toboggan, string[][] map, int yMovement, int xMovement)
         {
-            toboggan.xPosition += xMovement;
             toboggan.yPosition += yMovement;
+            toboggan.xPosition += xMovement;
 
             if (toboggan.xPosition >= map[0].Length) toboggan.xPosition -= (map[0].Length);
 
