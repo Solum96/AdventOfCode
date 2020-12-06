@@ -11,25 +11,18 @@ namespace AdventofCode5
         {
             var inputData = File.ReadAllLines(@"C:\Users\nilss\Source\Repos\AdventOfCode\AdventOfCode5\AdventOfCode5\TestData.txt");
 
-            List<int> seatIds = new List<int>();
-            foreach (var item in inputData)
+            var seatIdsArr = inputData.Select(i =>
             {
-                int row = GetRowNumber(item);
-                int col = GetColumnNumber(item);
+                var row = Convert.ToInt32(i.Substring(0, 7).Replace('B', '1').Replace('F', '0'), 2);
+                var col = Convert.ToInt32(i.Substring(7, 3).Replace('R', '1').Replace('L', '0'), 2);
+                return row * 8 + col;
+            }).OrderBy(x => x).ToArray();
 
-                seatIds.Add(row * 8 + col);
-            }
-
-            seatIds = seatIds.OrderBy(x => x).ToList();
-
-            int answer = 0;
-            for (int i = 1; i < seatIds.Count; i++)
+            Console.WriteLine($"Max: {seatIdsArr.Max()}");
+            for (int i = 1; i < seatIdsArr.Length; i++)
             {
-                if (seatIds[i - 1] != seatIds[i] - 1) answer = seatIds[i - 1] + 1;
+                if (seatIdsArr[i - 1] != seatIdsArr[i] - 1) Console.WriteLine($"Your seat: {seatIdsArr[i] - 1}");
             }
-
-            Console.WriteLine("Highest seatID = " + seatIds.Max());
-            Console.WriteLine("Your seat = " + answer);
         }
 
         public static int GetRowNumber(string boardingPass)
